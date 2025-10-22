@@ -5,7 +5,11 @@ import pymysql as sql
 """
 
 connection = sql.connect(
-    host="", user="", password="", port=3306, db="your_database_name"
+    host="192.168.0.37",
+    user="project1",
+    password="1111",
+    port=3306,
+    db="elecar_parking",
 )
 
 cursor = connection.cursor()
