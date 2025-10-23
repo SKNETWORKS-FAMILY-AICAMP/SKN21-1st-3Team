@@ -209,3 +209,7 @@ __marimo__/
 
 # private keys
 .env    
+
+
+# test
+test/
