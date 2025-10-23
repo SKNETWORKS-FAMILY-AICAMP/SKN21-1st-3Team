@@ -26,28 +26,28 @@ gyeongbuk = ['경산시', '경주시', '고령군', '구미시', '김천시', '�
 jeju = ['서귀포시', '제주시']
 
 
-seoul_list = region_name.seoul
+# seoul_list = region_name.seoul
 
-# 광역시(6)
-busan_list = region_name.busan
-incheon_list = region_name.incheon
-daegu_list = region_name.daegu
-daejeon_list = region_name.daejeon
-gwangju_list = region_name.gwangju
-ulsan_list = region_name.ulsan
+# # 광역시(6)
+# busan_list = region_name.busan
+# incheon_list = region_name.incheon
+# daegu_list = region_name.daegu
+# daejeon_list = region_name.daejeon
+# gwangju_list = region_name.gwangju
+# ulsan_list = region_name.ulsan
 
-# 특별자치시(1)
-sejong_list = region_name.sejong
+# # 특별자치시(1)
+# sejong_list = region_name.sejong
 
-# 도(6)
-gyeonggi_list = region_name.gyeonggi
-chungbuk_list = region_name.chungbuk
-chungnam_list = region_name.chungnam
-jeonbuk_list = region_name.jeonbuk
-jeonnam_list = region_name.jeonnam
-gyeongnam_list = region_name.gyeongnam
+# # 도(6)
+# gyeonggi_list = region_name.gyeonggi
+# chungbuk_list = region_name.chungbuk
+# chungnam_list = region_name.chungnam
+# jeonbuk_list = region_name.jeonbuk
+# jeonnam_list = region_name.jeonnam
+# gyeongnam_list = region_name.gyeongnam
 
-# 특별자치도(3)
-gangwon_list = region_name.gangwon
-gyeongbuk_list = region_name.gyeongbuk
-jeju_list = region_name.jeju
+# # 특별자치도(3)
+# gangwon_list = region_name.gangwon
+# gyeongbuk_list = region_name.gyeongbuk
+# jeju_list = region_name.jeju

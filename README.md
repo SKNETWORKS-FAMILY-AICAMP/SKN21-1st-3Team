@@ -6,4 +6,4 @@
 
 ### ERD
 
-[ERD (.erd.json)](src/queries/data.vuerd.json)
+![ERD diagram](src/queries/data/image.png)

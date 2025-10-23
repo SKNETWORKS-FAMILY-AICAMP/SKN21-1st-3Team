@@ -4,9 +4,9 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": -563.4925,
-    "scrollLeft": -307.3021,
-    "zoomLevel": 0.73,
+    "scrollTop": -517.4925,
+    "scrollLeft": -228.3021,
+    "zoomLevel": 0.76,
     "show": 431,
     "database": 4,
     "databaseName": "",
@@ -49,7 +49,7 @@
       "CrjpQ54XHBt4bM9oGf0dD": {
         "id": "CrjpQ54XHBt4bM9oGf0dD",
         "name": "emd_info",
-        "comment": "읍면동 코드 정보",
+        "comment": "읍면동 코드/이름 정보",
         "columnIds": [
           "paGqO4rs4s1RgLOswgt8g",
           "8KbbTReTcr2gRULipMO6S"
@@ -66,18 +66,18 @@
           "y": 408.9588,
           "zIndex": 2,
           "widthName": 60,
-          "widthComment": 93,
+          "widthComment": 121,
           "color": ""
         },
         "meta": {
-          "updateAt": 1761207640965,
+          "updateAt": 1761225617229,
           "createAt": 1761204922129
         }
       },
       "_z-kBHyRC9ga-QTQc916b": {
         "id": "_z-kBHyRC9ga-QTQc916b",
         "name": "sgg_info",
-        "comment": "시군구 코드 정보",
+        "comment": "시군구 코드/이름 정보",
         "columnIds": [
           "-EREK8ApE998lhvYOvNwi",
           "-JZIwcT2xa7eGU9OKTHj9"
@@ -92,18 +92,18 @@
           "y": 558.0365,
           "zIndex": 71,
           "widthName": 60,
-          "widthComment": 93,
+          "widthComment": 121,
           "color": ""
         },
         "meta": {
-          "updateAt": 1761207012976,
+          "updateAt": 1761225619582,
           "createAt": 1761205216408
         }
       },
       "yqF7M8CsTVMSsjdbByEmR": {
         "id": "yqF7M8CsTVMSsjdbByEmR",
         "name": "ctprvn_info",
-        "comment": "시도 코드 정보",
+        "comment": "시도 코드/이름 정보",
         "columnIds": [
           "EJOyMus_tAxYTPtlNFRdG",
           "4IHb5Oh_xCnG3fyfT7x8f"
@@ -120,11 +120,11 @@
           "y": 697.5689,
           "zIndex": 83,
           "widthName": 61,
-          "widthComment": 81,
+          "widthComment": 109,
           "color": ""
         },
         "meta": {
-          "updateAt": 1761207587879,
+          "updateAt": 1761225621822,
           "createAt": 1761205256865
         }
       },

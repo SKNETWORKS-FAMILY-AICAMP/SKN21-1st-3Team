@@ -15,10 +15,7 @@ db_port = int(os.environ.get("DB_PORT") or 0)
 
 
 
-"""
-    sql 서버 연동 모듈
-"""
-
+# sql 서버 연동 모듈
 
 
 def return_cur():
@@ -42,17 +39,7 @@ def delete_all_data(connection, cursor, table_name):
         cursor (_type_): 커서
         table_name (_type_): 지우려는 테이블 이름
     """
-    import re
-
-    if not isinstance(table_name, str):
-        raise ValueError("table_name must be a string")
-
-    # 안전 검증: 테이블명은 알파벳/숫자/언더스코어만 허용
-    if not re.match(r'^[A-Za-z0-9_]+$', table_name):
-        raise ValueError("unsafe table name; only letters, digits and underscore allowed")
-
     try:
-        # TRUNCATE가 빠르고 자동으로 인덱스/자동증가값을 리셋하므로 기본 사용
         query = f"TRUNCATE TABLE `{table_name}`"
         cursor.execute(query)
         connection.commit()
@@ -98,6 +85,8 @@ def insert_all_data(connection, cursor,  table_name, csv_path="charging_station.
         connection.rollback()
         print("삽입 중 오류:", e)
         raise
+
+
 
 if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))

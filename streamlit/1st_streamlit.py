@@ -1,9 +1,11 @@
 import streamlit as st
 import pandas as pd
-from streamlit_folium import st_folium as st_fol
+from streamlit_folium import st_folium
 import folium as fol
 import region_name
-from src.queries.insert_all_data import return_cur
+# from src.queries.insert_all_data import return_cur
+
+st.set_page_config(layout="wide")
 
 ########## 페이지 제목 ##########
 st.title('전기차 충전소 찾기')
@@ -91,9 +93,9 @@ st.markdown("\n")
 st.markdown("\n")
 st.button("검색", on_click=None, disabled=False, use_container_width=True)
 
-def find_sidogungu_key():
-    connection, cursor = return_cur()
-    cursor.execute
+# def find_sidogungu_key():
+#     connection, cursor = return_cur()
+#     cursor.execute
 
 
 ########## 지도 데이터 구역 ##########
@@ -112,9 +114,9 @@ for lat, lon, name in locations:
     popup=name,
     icon=fol.Icon(icon='📍')
 ).add_to(m)
-st_fol(m, width=None, height=None)
-st.set_page_config(layout="wide")
+st_folium(m, width=1000, height=600, key="initial_map")
+
 
 # 표 데이터 구역
 
-if option == "공영주차장" 1 else 0
+# if option == "공영주차장" 1 else 0
