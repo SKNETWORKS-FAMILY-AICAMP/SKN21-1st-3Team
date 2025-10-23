@@ -25,29 +25,46 @@ gangwon = ['강릉시', '고성군', '동해시', '삼척시', '속초시', '양
 gyeongbuk = ['경산시', '경주시', '고령군', '구미시', '김천시', '문경시', '봉화군', '상주시', '성주군', '안동시', '영덕군', '영양군', '영주시', '영천시', '예천군', '울릉군', '울진군', '의성군', '청도군', '청송군', '칠곡군', '포항시']
 jeju = ['서귀포시', '제주시']
 
+def get_list(dosi):
+    region_dict = {
+        "강원특별자치도": gangwon,
+        "경기도": gyeonggi,
+        "경상남도": gyeongnam,
+        "경상북도": gyeongbuk,
+        "광주광역시": gwangju,
+        "대구광역시": daegu,
+        "대전광역시": daejeon,
+        "부산광역시": busan,
+        "서울특별시": seoul,
+        "세종특별자치시": sejong,
+        "울산광역시": ulsan,
+        "인천광역시": incheon,
+        "전라북도": jeonbuk,
+        "전라남도": jeonnam,
+        "충청북도": chungbuk,
+        "충청남도": chungnam,
+        "제주특별자치도": jeju
+    }
+    return region_dict.get(dosi)
 
-# seoul_list = region_name.seoul
-
-# # 광역시(6)
-# busan_list = region_name.busan
-# incheon_list = region_name.incheon
-# daegu_list = region_name.daegu
-# daejeon_list = region_name.daejeon
-# gwangju_list = region_name.gwangju
-# ulsan_list = region_name.ulsan
-
-# # 특별자치시(1)
-# sejong_list = region_name.sejong
-
-# # 도(6)
-# gyeonggi_list = region_name.gyeonggi
-# chungbuk_list = region_name.chungbuk
-# chungnam_list = region_name.chungnam
-# jeonbuk_list = region_name.jeonbuk
-# jeonnam_list = region_name.jeonnam
-# gyeongnam_list = region_name.gyeongnam
-
-# # 특별자치도(3)
-# gangwon_list = region_name.gangwon
-# gyeongbuk_list = region_name.gyeongbuk
-# jeju_list = region_name.jeju
+# def get_list(dosi):
+#     region_dict = {
+#         "강원특별자치도": region_name.gangwon,
+#         "경기도": region_name.gyeonggi,
+#         "경상남도": region_name.gyeongnam,
+#         "경상북도": region_name.gyeongbuk,
+#         "광주광역시": region_name.gwangju,
+#         "대구광역시": region_name.daegu,
+#         "대전광역시": region_name.daejeon,
+#         "부산광역시": region_name.busan,
+#         "서울특별시": region_name.seoul,
+#         "세종특별자치시": region_name.sejong,
+#         "울산광역시": region_name.ulsan,
+#         "인천광역시": region_name.incheon,
+#         "전라북도": region_name.jeonbuk,
+#         "전라남도": region_name.jeonnam,
+#         "충청북도": region_name.chungbuk,
+#         "충청남도": region_name.chungnam,
+#         "제주특별자치도": region_name.jeju
+#     }
+#     return region_dict.get(dosi)
