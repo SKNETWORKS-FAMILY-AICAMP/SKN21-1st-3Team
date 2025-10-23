@@ -2,8 +2,7 @@ import pymysql as sql
 from dotenv import load_dotenv
 import pandas as pd
 import os
-
-
+from .. import database
 # .env 환경 변수 load
 load_dotenv()
 
@@ -15,19 +14,24 @@ db_name = os.environ.get("DB_NAME")
 db_port = int(os.environ.get("DB_PORT") or 0)
 
 
+
 """
     sql 서버 연동 모듈
 """
 
-connection = sql.connect(
+
+
+def return_cur():
+    connection = sql.connect(
     host=db_host,
     user=db_user,
     password=db_password,
     port=db_port,
-    db=db_name,
-)
+    db=db_name)
+    cursor = connection.cursor()
 
-cursor = connection.cursor()
+    return connection, cursor
+
 
 def delete_all_data(connection, cursor, table_name):
     """_summary_
@@ -102,7 +106,7 @@ if __name__ == "__main__":
     
     # 테이블 전체 데이터 삭제 필요 할 때 아래 주석 실행
     # delete_all_data(connection, cursor, table_name)
-
+    connection, cursor = return_cur()
 
     try:
         insert_all_data(connection, cursor, table_name, csv_path=csv_path, chunksize=10000)

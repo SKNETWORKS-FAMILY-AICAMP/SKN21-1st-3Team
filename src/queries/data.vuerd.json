@@ -1,0 +1,1050 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
+  "version": "3.0.0",
+  "settings": {
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -563.4925,
+    "scrollLeft": -307.3021,
+    "zoomLevel": 0.73,
+    "show": 431,
+    "database": 4,
+    "databaseName": "",
+    "canvasType": "ERD",
+    "language": 1,
+    "tableNameCase": 4,
+    "columnNameCase": 2,
+    "bracketType": 1,
+    "relationshipDataTypeSync": true,
+    "relationshipOptimization": false,
+    "columnOrder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "maxWidthComment": -1,
+    "ignoreSaveSettings": 0
+  },
+  "doc": {
+    "tableIds": [
+      "CrjpQ54XHBt4bM9oGf0dD",
+      "_z-kBHyRC9ga-QTQc916b",
+      "yqF7M8CsTVMSsjdbByEmR",
+      "yXqLoEuggmqW2I4x0Irbk"
+    ],
+    "relationshipIds": [
+      "8_YrROsqruxuDs5gAncie",
+      "UBISvaT7LEqnaTAcvzVf4",
+      "DiS9mI1isTL7pN8uYvfz2"
+    ],
+    "indexIds": [],
+    "memoIds": []
+  },
+  "collections": {
+    "tableEntities": {
+      "CrjpQ54XHBt4bM9oGf0dD": {
+        "id": "CrjpQ54XHBt4bM9oGf0dD",
+        "name": "emd_info",
+        "comment": "읍면동 코드 정보",
+        "columnIds": [
+          "paGqO4rs4s1RgLOswgt8g",
+          "8KbbTReTcr2gRULipMO6S"
+        ],
+        "seqColumnIds": [
+          "Lf6gnYKBrkvEz6ThZ54ah",
+          "paGqO4rs4s1RgLOswgt8g",
+          "8KbbTReTcr2gRULipMO6S",
+          "GLBJYdVsz3dtuR19F2sIZ",
+          "U7SXA-ItGDnPCOQ-VzLha"
+        ],
+        "ui": {
+          "x": 776.1724,
+          "y": 408.9588,
+          "zIndex": 2,
+          "widthName": 60,
+          "widthComment": 93,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1761207640965,
+          "createAt": 1761204922129
+        }
+      },
+      "_z-kBHyRC9ga-QTQc916b": {
+        "id": "_z-kBHyRC9ga-QTQc916b",
+        "name": "sgg_info",
+        "comment": "시군구 코드 정보",
+        "columnIds": [
+          "-EREK8ApE998lhvYOvNwi",
+          "-JZIwcT2xa7eGU9OKTHj9"
+        ],
+        "seqColumnIds": [
+          "-EREK8ApE998lhvYOvNwi",
+          "-JZIwcT2xa7eGU9OKTHj9",
+          "yg9I-yaua-AO0euNtj2xc"
+        ],
+        "ui": {
+          "x": 771.6344,
+          "y": 558.0365,
+          "zIndex": 71,
+          "widthName": 60,
+          "widthComment": 93,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1761207012976,
+          "createAt": 1761205216408
+        }
+      },
+      "yqF7M8CsTVMSsjdbByEmR": {
+        "id": "yqF7M8CsTVMSsjdbByEmR",
+        "name": "ctprvn_info",
+        "comment": "시도 코드 정보",
+        "columnIds": [
+          "EJOyMus_tAxYTPtlNFRdG",
+          "4IHb5Oh_xCnG3fyfT7x8f"
+        ],
+        "seqColumnIds": [
+          "YwuBUTSf4ZZw5bVV0tFlD",
+          "VxXHx6mK8PjHP1f1o9p6t",
+          "EJOyMus_tAxYTPtlNFRdG",
+          "HLF6U8vUceuHGGm_BSC6J",
+          "4IHb5Oh_xCnG3fyfT7x8f"
+        ],
+        "ui": {
+          "x": 767.6218,
+          "y": 697.5689,
+          "zIndex": 83,
+          "widthName": 61,
+          "widthComment": 81,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1761207587879,
+          "createAt": 1761205256865
+        }
+      },
+      "yXqLoEuggmqW2I4x0Irbk": {
+        "id": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "charging_statoin",
+        "comment": "전기차 충전소 현황 정보",
+        "columnIds": [
+          "SMNBpYx-urggFlyNDEFjL",
+          "Lt_ShqihGo89X_se-Zgz-",
+          "S6Ai28JG54KRitP5InhPb",
+          "fHIwXVnVgpqJKsoJK97CK",
+          "U5Cxg0nhSmFzmTlYgyF9i",
+          "D1G0nPQxj2jPvHKqSVg5k",
+          "ZGbzOHhDtC9WzY-Bba4CE",
+          "UFClr5-YqPrxXF3WVvkT8",
+          "tQotdZSskGj1S034tEI9Z",
+          "OwCtqcq4yAsVoxkJD8TpU",
+          "86aO4rDAB_fsxlgeeHrbq",
+          "a1tPufrVk3GX8lGhdRrxt",
+          "05DOmbOI_mFECntMblErp",
+          "OE6eB6fVV92yFeY68ZDcw",
+          "UNNc31XJzhfntfbTkuwOm",
+          "kNEZeFRQiattbqIDPmzjl",
+          "DvSRx08YsSLeryWMza_ey",
+          "M_t92ncyKujuJkwpufPo1",
+          "J20PFGWtupB2LG84etAaw",
+          "6Jgq0WkbNYRG3yRJHEfkZ"
+        ],
+        "seqColumnIds": [
+          "SMNBpYx-urggFlyNDEFjL",
+          "Lt_ShqihGo89X_se-Zgz-",
+          "N-0JJIypQ5_F8fUe3qth1",
+          "S6Ai28JG54KRitP5InhPb",
+          "fHIwXVnVgpqJKsoJK97CK",
+          "U5Cxg0nhSmFzmTlYgyF9i",
+          "D1G0nPQxj2jPvHKqSVg5k",
+          "ZGbzOHhDtC9WzY-Bba4CE",
+          "UFClr5-YqPrxXF3WVvkT8",
+          "tQotdZSskGj1S034tEI9Z",
+          "OwCtqcq4yAsVoxkJD8TpU",
+          "86aO4rDAB_fsxlgeeHrbq",
+          "a1tPufrVk3GX8lGhdRrxt",
+          "eZEpODUSMwf8gs_4JF4lM",
+          "NVSja5TGNqm-ReKNb8_UZ",
+          "05DOmbOI_mFECntMblErp",
+          "OE6eB6fVV92yFeY68ZDcw",
+          "sfvuPAp8MfVXTKuKPX1NY",
+          "UNNc31XJzhfntfbTkuwOm",
+          "kNEZeFRQiattbqIDPmzjl",
+          "DvSRx08YsSLeryWMza_ey",
+          "5eDo5C12TrXWkrMY7Cp9C",
+          "M_t92ncyKujuJkwpufPo1",
+          "J20PFGWtupB2LG84etAaw",
+          "6Jgq0WkbNYRG3yRJHEfkZ"
+        ],
+        "ui": {
+          "x": 231.2286,
+          "y": 341.6797,
+          "zIndex": 97,
+          "widthName": 89,
+          "widthComment": 132,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1761207775417,
+          "createAt": 1761205312611
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "paGqO4rs4s1RgLOswgt8g": {
+        "id": "paGqO4rs4s1RgLOswgt8g",
+        "tableId": "CrjpQ54XHBt4bM9oGf0dD",
+        "name": "EMD_CD",
+        "comment": "읍면동 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 65,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207610964,
+          "createAt": 1761204946810
+        }
+      },
+      "8KbbTReTcr2gRULipMO6S": {
+        "id": "8KbbTReTcr2gRULipMO6S",
+        "tableId": "CrjpQ54XHBt4bM9oGf0dD",
+        "name": "EMD_NM",
+        "comment": "읍면동 이름",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 65,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761205162513,
+          "createAt": 1761205004498
+        }
+      },
+      "GLBJYdVsz3dtuR19F2sIZ": {
+        "id": "GLBJYdVsz3dtuR19F2sIZ",
+        "tableId": "CrjpQ54XHBt4bM9oGf0dD",
+        "name": "VARCHAR",
+        "comment": "",
+        "dataType": "",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761205210665,
+          "createAt": 1761205210664
+        }
+      },
+      "U7SXA-ItGDnPCOQ-VzLha": {
+        "id": "U7SXA-ItGDnPCOQ-VzLha",
+        "tableId": "CrjpQ54XHBt4bM9oGf0dD",
+        "name": "VARCHAR",
+        "comment": "",
+        "dataType": "",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761205213946,
+          "createAt": 1761205213946
+        }
+      },
+      "-EREK8ApE998lhvYOvNwi": {
+        "id": "-EREK8ApE998lhvYOvNwi",
+        "tableId": "_z-kBHyRC9ga-QTQc916b",
+        "name": "SGG_CD",
+        "comment": "시군구 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 65,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207483841,
+          "createAt": 1761205217578
+        }
+      },
+      "-JZIwcT2xa7eGU9OKTHj9": {
+        "id": "-JZIwcT2xa7eGU9OKTHj9",
+        "tableId": "_z-kBHyRC9ga-QTQc916b",
+        "name": "SGG_NM",
+        "comment": "시군구 이름",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 65,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761205252502,
+          "createAt": 1761205217893
+        }
+      },
+      "yg9I-yaua-AO0euNtj2xc": {
+        "id": "yg9I-yaua-AO0euNtj2xc",
+        "tableId": "_z-kBHyRC9ga-QTQc916b",
+        "name": "",
+        "comment": "",
+        "dataType": "",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761205248944,
+          "createAt": 1761205248944
+        }
+      },
+      "VxXHx6mK8PjHP1f1o9p6t": {
+        "id": "VxXHx6mK8PjHP1f1o9p6t",
+        "tableId": "yqF7M8CsTVMSsjdbByEmR",
+        "name": "CTPRVN_CD",
+        "comment": "시도 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207487713,
+          "createAt": 1761205280688
+        }
+      },
+      "4IHb5Oh_xCnG3fyfT7x8f": {
+        "id": "4IHb5Oh_xCnG3fyfT7x8f",
+        "tableId": "yqF7M8CsTVMSsjdbByEmR",
+        "name": "CTPRVN_NM",
+        "comment": "시도 이름",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 71,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761205306359,
+          "createAt": 1761205294905
+        }
+      },
+      "N-0JJIypQ5_F8fUe3qth1": {
+        "id": "N-0JJIypQ5_F8fUe3qth1",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "OBJD_ID",
+        "comment": "일련번호",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207610020,
+          "createAt": 1761205329101
+        }
+      },
+      "Lt_ShqihGo89X_se-Zgz-": {
+        "id": "Lt_ShqihGo89X_se-Zgz-",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "STAT_NM",
+        "comment": "충전소명",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206648810,
+          "createAt": 1761206637122
+        }
+      },
+      "S6Ai28JG54KRitP5InhPb": {
+        "id": "S6Ai28JG54KRitP5InhPb",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "STAT_ID",
+        "comment": "충전소ID",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206658755,
+          "createAt": 1761206648810
+        }
+      },
+      "fHIwXVnVgpqJKsoJK97CK": {
+        "id": "fHIwXVnVgpqJKsoJK97CK",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "CHGER_ID",
+        "comment": "충전기ID",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206855407,
+          "createAt": 1761206659181
+        }
+      },
+      "U5Cxg0nhSmFzmTlYgyF9i": {
+        "id": "U5Cxg0nhSmFzmTlYgyF9i",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "CHGET_TY",
+        "comment": "충천기타입",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 62,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206860821,
+          "createAt": 1761206668047
+        }
+      },
+      "D1G0nPQxj2jPvHKqSVg5k": {
+        "id": "D1G0nPQxj2jPvHKqSVg5k",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "USE_TM",
+        "comment": "이용가능시간",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 74,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206868782,
+          "createAt": 1761206708312
+        }
+      },
+      "ZGbzOHhDtC9WzY-Bba4CE": {
+        "id": "ZGbzOHhDtC9WzY-Bba4CE",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "BUSI_ID",
+        "comment": "기관ID",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207540658,
+          "createAt": 1761206708598
+        }
+      },
+      "UFClr5-YqPrxXF3WVvkT8": {
+        "id": "UFClr5-YqPrxXF3WVvkT8",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "BUSI_NM",
+        "comment": "운영기관명",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 62,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206878476,
+          "createAt": 1761206708914
+        }
+      },
+      "tQotdZSskGj1S034tEI9Z": {
+        "id": "tQotdZSskGj1S034tEI9Z",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "TELNO",
+        "comment": "관리업체전화번호",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 98,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206885546,
+          "createAt": 1761206709056
+        }
+      },
+      "OwCtqcq4yAsVoxkJD8TpU": {
+        "id": "OwCtqcq4yAsVoxkJD8TpU",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "ADRES",
+        "comment": "지번주소",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206891691,
+          "createAt": 1761206732346
+        }
+      },
+      "86aO4rDAB_fsxlgeeHrbq": {
+        "id": "86aO4rDAB_fsxlgeeHrbq",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "RN_ADRES",
+        "comment": "도로명주소",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 62,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206893486,
+          "createAt": 1761206738455
+        }
+      },
+      "NVSja5TGNqm-ReKNb8_UZ": {
+        "id": "NVSja5TGNqm-ReKNb8_UZ",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "CTPRVN_CD",
+        "comment": "시도 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206902205,
+          "createAt": 1761206742797
+        }
+      },
+      "a1tPufrVk3GX8lGhdRrxt": {
+        "id": "a1tPufrVk3GX8lGhdRrxt",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "SGG_CD",
+        "comment": "시군구 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 65,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206904697,
+          "createAt": 1761206749860
+        }
+      },
+      "OE6eB6fVV92yFeY68ZDcw": {
+        "id": "OE6eB6fVV92yFeY68ZDcw",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "EMD_CD",
+        "comment": "읍면동 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 65,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207605652,
+          "createAt": 1761206752844
+        }
+      },
+      "UNNc31XJzhfntfbTkuwOm": {
+        "id": "UNNc31XJzhfntfbTkuwOm",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "LATITUDE",
+        "comment": "위도",
+        "dataType": "DOUBLE",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206914606,
+          "createAt": 1761206758373
+        }
+      },
+      "kNEZeFRQiattbqIDPmzjl": {
+        "id": "kNEZeFRQiattbqIDPmzjl",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "LONGTITUDE",
+        "comment": "경도",
+        "dataType": "DOUBLE",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 72,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206921171,
+          "createAt": 1761206788110
+        }
+      },
+      "DvSRx08YsSLeryWMza_ey": {
+        "id": "DvSRx08YsSLeryWMza_ey",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "Is_24h",
+        "comment": "24시간 이용 여부",
+        "dataType": "TINYINT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 94,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206931067,
+          "createAt": 1761206828112
+        }
+      },
+      "5eDo5C12TrXWkrMY7Cp9C": {
+        "id": "5eDo5C12TrXWkrMY7Cp9C",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "",
+        "comment": "",
+        "dataType": "",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761206843477,
+          "createAt": 1761206843477
+        }
+      },
+      "YwuBUTSf4ZZw5bVV0tFlD": {
+        "id": "YwuBUTSf4ZZw5bVV0tFlD",
+        "tableId": "yqF7M8CsTVMSsjdbByEmR",
+        "name": "CTPRVN_CD",
+        "comment": "시도 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207490064,
+          "createAt": 1761207490064
+        }
+      },
+      "eZEpODUSMwf8gs_4JF4lM": {
+        "id": "eZEpODUSMwf8gs_4JF4lM",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "CTPRVN_CD",
+        "comment": "시도 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207584531,
+          "createAt": 1761207491566
+        }
+      },
+      "sfvuPAp8MfVXTKuKPX1NY": {
+        "id": "sfvuPAp8MfVXTKuKPX1NY",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "CTPRVN_CD",
+        "comment": "시도 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207502415,
+          "createAt": 1761207502415
+        }
+      },
+      "EJOyMus_tAxYTPtlNFRdG": {
+        "id": "EJOyMus_tAxYTPtlNFRdG",
+        "tableId": "yqF7M8CsTVMSsjdbByEmR",
+        "name": "CTPRVN_CD",
+        "comment": "시도 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207504128,
+          "createAt": 1761207504128
+        }
+      },
+      "HLF6U8vUceuHGGm_BSC6J": {
+        "id": "HLF6U8vUceuHGGm_BSC6J",
+        "tableId": "yqF7M8CsTVMSsjdbByEmR",
+        "name": "CTPRVN_CD",
+        "comment": "시도 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207585412,
+          "createAt": 1761207585412
+        }
+      },
+      "05DOmbOI_mFECntMblErp": {
+        "id": "05DOmbOI_mFECntMblErp",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "CTPRVN_CD",
+        "comment": "시도 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207604756,
+          "createAt": 1761207587880
+        }
+      },
+      "Lf6gnYKBrkvEz6ThZ54ah": {
+        "id": "Lf6gnYKBrkvEz6ThZ54ah",
+        "tableId": "CrjpQ54XHBt4bM9oGf0dD",
+        "name": "OBJD_ID",
+        "comment": "일련번호",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207639181,
+          "createAt": 1761207639181
+        }
+      },
+      "SMNBpYx-urggFlyNDEFjL": {
+        "id": "SMNBpYx-urggFlyNDEFjL",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "OBJD_ID",
+        "comment": "일련번호",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207640966,
+          "createAt": 1761207640965
+        }
+      },
+      "M_t92ncyKujuJkwpufPo1": {
+        "id": "M_t92ncyKujuJkwpufPo1",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "CTPRVN_CD",
+        "comment": "시도 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207734452,
+          "createAt": 1761207734452
+        }
+      },
+      "J20PFGWtupB2LG84etAaw": {
+        "id": "J20PFGWtupB2LG84etAaw",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "SGG_CD",
+        "comment": "시군구 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 60,
+          "widthComment": 65,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207747386,
+          "createAt": 1761207747386
+        }
+      },
+      "6Jgq0WkbNYRG3yRJHEfkZ": {
+        "id": "6Jgq0WkbNYRG3yRJHEfkZ",
+        "tableId": "yXqLoEuggmqW2I4x0Irbk",
+        "name": "EMD_CD",
+        "comment": "읍면동 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 60,
+          "widthComment": 65,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761207763564,
+          "createAt": 1761207763564
+        }
+      }
+    },
+    "relationshipEntities": {
+      "8_YrROsqruxuDs5gAncie": {
+        "id": "8_YrROsqruxuDs5gAncie",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "yqF7M8CsTVMSsjdbByEmR",
+          "columnIds": [
+            "EJOyMus_tAxYTPtlNFRdG"
+          ],
+          "x": 767.6218,
+          "y": 749.5689,
+          "direction": 1
+        },
+        "end": {
+          "tableId": "yXqLoEuggmqW2I4x0Irbk",
+          "columnIds": [
+            "M_t92ncyKujuJkwpufPo1"
+          ],
+          "x": 646.2286,
+          "y": 788.3463666666667,
+          "direction": 2
+        },
+        "meta": {
+          "updateAt": 1761207734452,
+          "createAt": 1761207734452
+        }
+      },
+      "UBISvaT7LEqnaTAcvzVf4": {
+        "id": "UBISvaT7LEqnaTAcvzVf4",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "_z-kBHyRC9ga-QTQc916b",
+          "columnIds": [
+            "-EREK8ApE998lhvYOvNwi"
+          ],
+          "x": 771.6344,
+          "y": 610.0365,
+          "direction": 1
+        },
+        "end": {
+          "tableId": "yXqLoEuggmqW2I4x0Irbk",
+          "columnIds": [
+            "J20PFGWtupB2LG84etAaw"
+          ],
+          "x": 646.2286,
+          "y": 609.6797,
+          "direction": 2
+        },
+        "meta": {
+          "updateAt": 1761207747386,
+          "createAt": 1761207747386
+        }
+      },
+      "DiS9mI1isTL7pN8uYvfz2": {
+        "id": "DiS9mI1isTL7pN8uYvfz2",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "CrjpQ54XHBt4bM9oGf0dD",
+          "columnIds": [
+            "paGqO4rs4s1RgLOswgt8g"
+          ],
+          "x": 776.1724,
+          "y": 460.9588,
+          "direction": 1
+        },
+        "end": {
+          "tableId": "yXqLoEuggmqW2I4x0Irbk",
+          "columnIds": [
+            "6Jgq0WkbNYRG3yRJHEfkZ"
+          ],
+          "x": 646.2286,
+          "y": 431.0130333333334,
+          "direction": 2
+        },
+        "meta": {
+          "updateAt": 1761207763564,
+          "createAt": 1761207763564
+        }
+      }
+    },
+    "indexEntities": {},
+    "indexColumnEntities": {},
+    "memoEntities": {}
+  }
+}
