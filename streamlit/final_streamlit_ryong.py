@@ -16,12 +16,8 @@ def search_result():
     #########################################
 
     ##### 작성자 : 승룡
-
-    CTPRVN_CD = '11'
     # 첫 가운데 좌표 쿼리
-    query_1st_geo = "SELECT min(latitude) '1st_latitude' , min(longitude) '1st_longtitude' FROM charging_station WHERE CTPRVN_CD = '" + CTPRVN_CD + "';"
-    # query_1st_geo = "SELECT min(latitude) '1st_latitude' , min(longitude) '1st_longtitude' FROM charging_station WHERE CTPRVN_CD = '11' group by CTPRVN_CD;"
-
+    query_1st_geo = "SELECT min(latitude) '1st_latitude' , min(longitude) '1st_longtitude' FROM charging_station WHERE ADRES LIKE ('" + dosi + "_" + sigungu + "%');"
     result_df_geo = db.get_data_as_dataframe(query_1st_geo)
     for idx, row in result_df_geo.iterrows():
         global first_latitude
@@ -29,26 +25,48 @@ def search_result():
         first_latitude = row['1st_latitude']
         first_longtitude = row['1st_longtitude']
 
-    # if st.button("검색", on_click=None, disabled=False, use_container_width=True) :
-
         # 쿼리 결과 출력
         st.subheader("쿼리 결과")
 
         # 버튼 선택별 쿼리 분기
+        # selection_optime : 24시간 운영, 지정 시간제 운영. is_24h : 1, 0
+        # selection_park_type : 공영주차장, 민영주차장. is_public : 1, 0
         # 1. 선택 사항을 아무것도 클릭 안했을 때
-        # selection_optime : 24시간 운영, 지정 시간제 운영
-        # selection_park_type : 공영주차장, 민영주차장
         if (selection_time == None) and (selection_type == None):
-            # SQL 쿼리 입력
-            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE CTPRVN_CD = '" + CTPRVN_CD + "' GROUP BY STAT_NM, ADRES, is_24h, latitude, longitude;"
+            print("11111")
+            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+        # 2. 공영주차장만 클릭했을 때.(is_public이 1일 때). is_public = 1
+        elif (selection_time == None) and (selection_type == '공영주차장'):
+            print("2222")
+            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+        # 3. 민영주차장만 클릭했을 때.(is_public이 0일 때). is_public = 0
+        elif (selection_time == None) and (selection_type == '민영주차장'):
+            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+            print("3333")
+        # 4. 24시간 운영만 눌렀을 때.   is_24h = 1
+        elif (selection_time == '24시간 운영') and (selection_type == None):
+            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_24h = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+            print("4444")
+        # 5. 24시간 운영이고 공영주차장일 때. is_public = 1 and is_24h = 1
         elif (selection_time == '24시간 운영') and (selection_type == '공영주차장'):
-            print("24시간 운영!!")
+            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 1 and is_24h = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+            print("5555")
+        #6. 24시간 운영이고 민영주차장일 때 is_public = 0 and is_24h = 1
         elif (selection_time == '24시간 운영') and (selection_type == '민영주차장'):
-            print("지정 시간제 운영!!")
+            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 0 and is_24h = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+            print("6666")
+        #7. 24시간 운영이 아닐 때   is_24h = 0
+        elif (selection_time == '지정 시간제 운영') and (selection_type == None):
+            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_24h = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+            print("7777")
+        #8. 24시간 운영이 아니고, 공영주차장 일 때. is_public = 1 and is_24h = 0
         elif (selection_time == '지정 시간제 운영') and (selection_type == '공영주차장'):
-            print("지정 시간제 운영!!")
+            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 1 and is_24h = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+            print("8888")
+        #9. 24시간 운영이 아니고, 공영주차장아 아닐 때. is_public = 0 and is_24h = 0
         elif (selection_time == '지정 시간제 운영') and (selection_type == '민영주차장'):
-            print("지정 시간제 운영!!")
+            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 0 and is_24h = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+            print("9999")
         # SQL 쿼리 입력
         # query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE CTPRVN_CD = '" + CTPRVN_CD + "' GROUP BY STAT_NM, ADRES, is_24h, latitude, longitude;" 
         result_df = db.get_data_as_dataframe(query)  
