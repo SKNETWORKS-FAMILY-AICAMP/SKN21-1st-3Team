@@ -38,6 +38,71 @@ def get_SD_NM():
 def get_SGG_NM():
     pass
 
+def get_charging_stations_by_sigungu(dosi, sigungu, selection_time, selection_park):
+    """
+    선택된 시군구의 코드를 기반으로 충전소 데이터를 조회하고,
+    선택된 운영 시간 및 주차장 형태 조건을 적용하여 DataFrame으로 반환합니다.
+    """
+    
+    # 1. 시군구 이름(sigungu)을 이용해 시군구 코드(SGG_CD)를 가져오는 쿼리
+    sgg_code_query = f"SELECT SGG_CD FROM sgg_info WHERE SGG_NM = '{sigungu}'LIMIT 1"
+
+    try:
+        cursor.execute(sgg_code_query)
+        sgg_code_result = cursor.fetchone()
+        
+        if not sgg_code_result:
+            print(f"SGG_NM: '{sigungu}'에 해당하는 SGG_CD를 찾을 수 없습니다.")
+            return pd.DataFrame() # 코드를 찾지 못하면 빈 DataFrame 반환
+            
+        sgg_cd = sgg_code_result[0]
+        
+    except Exception as e:
+        print(f"SGG_CD 조회 중 DB 오류 발생: {e}")
+        return pd.DataFrame()
+
+    
+    # 2. 충전소 검색 조건 동적 생성
+    
+    time_condition = ""
+    if selection_time == "24시간 운영":
+        time_condition = "AND is_24h = 1"
+    elif selection_time == "지정 시간제 운영":
+        time_condition = "AND is_24h = 0"
+
+    park_condition = ""
+    if selection_park == "공영주차장":
+        park_condition = "AND is_public = 1"
+    elif selection_park == "민영주차장":
+        park_condition = "AND is_public = 0"
+
+
+    # 3. 최종 충전소 데이터 조회 쿼리 생성
+    # SGG_CD를 기준으로 필터링하고, 집계하여 표시합니다.
+    final_query = f"""
+    SELECT 
+        STAT_NM, ADRES, 
+        if(is_24h = 1, 'O', 'X') as '24시간여부', 
+        latitude, longitude, 
+        COUNT(*) as '충전기_수' 
+    FROM 
+        charging_station 
+    WHERE 
+        SGG_CD = '{sgg_cd}' 
+        {time_condition} 
+        {park_condition}
+    GROUP BY 
+        STAT_NM, ADRES, is_24h, latitude, longitude
+    """
+
+    # 4. 데이터 조회 및 반환
+    try:
+        result_df = get_data_as_dataframe(final_query)
+        return result_df
+    except Exception as e:
+        print(f"충전소 데이터 조회 중 DB 오류 발생: {e}")
+        return pd.DataFrame()
+
 # @st.cache_resource
 # def get_db_connection():
 #     conn=pymysql.connect(
