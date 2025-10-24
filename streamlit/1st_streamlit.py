@@ -119,25 +119,26 @@ query = "SELECT STAT_NM, ADRES, if(is_24h = 1, 'O', 'X') as '24시간여부', la
 
 
 result_df = db.get_data_as_dataframe(query)
+if st.button("검색") :
 
-# 쿼리 결과 출력
-st.subheader("쿼리 결과")
+    # 쿼리 결과 출력
+    st.subheader("쿼리 결과")
 
-st.dataframe(result_df, height=1000)
+    st.dataframe(result_df, height=1000)
 
-result_df[["lat","lon"]] = result_df[["latitude","longitude"]]
+    result_df[["lat","lon"]] = result_df[["latitude","longitude"]]
 
-m = folium.Map(location=[37.4562557, 126.7052062], zoom_start=13)
+    m = folium.Map(location=[37.4562557, 126.7052062], zoom_start=13)
 
-marker_cluster = MarkerCluster().add_to(m)
+    marker_cluster = MarkerCluster().add_to(m)
 
-for idx, row in result_df.iterrows():
-    popup_text = f"<b>{row['STAT_NM']}</b><br>{row['ADRES']}"
-    folium.Marker(
-        location=[row["lat"], row["lon"]],
-        popup=folium.Popup(popup_text, max_width=200)
-    ).add_to(marker_cluster)
+    for idx, row in result_df.iterrows():
+        popup_text = f"<b>{row['STAT_NM']}</b><br>{row['ADRES']}"
+        folium.Marker(
+            location=[row["lat"], row["lon"]],
+            popup=folium.Popup(popup_text, max_width=200)
+        ).add_to(marker_cluster)
 
-folium_static(m)
+    folium_static(m)
 
 # 표 데이터 구역
