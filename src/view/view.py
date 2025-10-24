@@ -14,11 +14,25 @@ st.set_page_config(layout="wide")
 if "station_list" not in st.session_state:
     st.session_state.station_list = []
 
+st.markdown(
+    """<style>
+        .st-key-search_button { 
+            margin-top: 20px;
+        }
+        .caption {
+            margin-top: -10px !important;
+            font-size: 12px !important;
+        }
+    </style>""",
+    unsafe_allow_html=True,
+)
+
 ########## 페이지 제목 ##########
 
 
 with st.sidebar:
-    st.title("전기차 충전소 찾기")
+    st.title("⚡️ 전기차 충전소 찾기")
+    st.subheader("STEP 1 | 지역 선택")
     # 첫 번째 선택박스: 도/광역시 선택
     dosi = st.selectbox(
         "도/시를 선택하세요",
@@ -28,16 +42,15 @@ with st.sidebar:
     sigungu = st.selectbox("시/군/구 또는 읍/면/동을 선택하세요", regions[dosi])
 
     st.divider()
-    st.markdown(
-        "<style>.st-key-search_button { margin-top: 20px; }</style>",
-        unsafe_allow_html=True,
-    )
-    # 24시간 선택 구역
 
-    st.markdown("운영 시간")
+    # 24시간 선택 구역
+    st.subheader("STEP 2 | 운영 정보 선택")
+    st.caption(
+        "<p class='caption'>선택 취소 시 버튼 한 번 더 클릭</p>", unsafe_allow_html=True
+    )
     options = ["지정 시간제 운영", "24시간 운영"]
     selection_time = st.pills(
-        "선택 취소 시 버튼 한 번 더 클릭",
+        "시간 형태",
         options,
         selection_mode="single",
     )
@@ -45,10 +58,10 @@ with st.sidebar:
 
     # 공영주차장 선택 구역
     is_public = None
-    st.markdown("주차장 형태")
+    st.markdown("")
     options = ["민영주차장", "공영주차장"]
     selection_park = st.pills(
-        "선택 취소 시 버튼 한 번 더 클릭",
+        "주차장 형태",
         options,
         selection_mode="single",
     )
