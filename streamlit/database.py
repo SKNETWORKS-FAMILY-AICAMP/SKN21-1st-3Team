@@ -14,12 +14,7 @@ db_password = os.environ.get("DB_PASSWORD") or ""
 db_name = os.environ.get("DB_NAME")
 db_port = int(os.environ.get("DB_PORT") or 0)
 
-
-print(db_host)
-print("sdsffasasdas")
-print("asdasdsadas")
 # sql 서버 연동 모듈
-
 connection = sql.connect(
     host=db_host,
     user=db_user,
@@ -54,5 +49,5 @@ def get_data_as_dataframe(query):
     df = pd.read_sql_query(query, connection)
     return df
     
-if __name__ == "__main__":
-    print(get_SD_NM())
+# if __name__ == "__main__":
+#     print(get_SD_NM())

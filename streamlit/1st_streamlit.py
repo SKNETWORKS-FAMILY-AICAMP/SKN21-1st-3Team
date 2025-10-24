@@ -17,20 +17,13 @@ import database as db
 st.title('전기차 충전소 찾기')
 st.subheader('검색 조건')
 st.markdown('지역')
-
 sido_list = db.get_SD_NM()
-
-print(sido_list)
 
 ### 지역 선택
 col1, col2 = st.columns(2)
 # 첫 번째 선택박스: 도/광역시 선택
 with col1:
-    dosi = st.selectbox("도/시를 선택하세요. (가다나순)",
-                    ['강원특별자치도', '경기도', '경상남도', '경상북도', '광주광역시',
-                     '대구광역시', '대전광역시', '부산광역시', '서울특별시', '세종특별자치시',
-                     '울산광역시', '인천광역시', '전라남도', '전북특별자치도', '제주특별자치도',
-                     '충청남도', '충청북도'])
+    dosi = st.selectbox("도/시를 선택하세요.", sorted(sido_list))
 # 두 번째 선택박스: 시/군/구 선택
 with col2:
     sigungu_list = getl(dosi)
@@ -56,19 +49,19 @@ st.button("검색", on_click=None, disabled=False, use_container_width=True)
 #########################################
 ############## SQL select ###############
 #########################################
-# def find_sidogungu_key():
-#     connection, cursor = rc()
-#     try:
-#         with cursor.execute():
-#     try:
-#         with conn.cursor() as cursor:
-#             sql = "SELECT * FROM your_table WHERE code_col = %s"
-#             cursor.execute(sql, (code,))
-#             result = cursor.fetchall()
-#             df = pd.DataFrame(result)
-#     finally:
-#         conn.close()
-#     return df
+def find_sidogungu_key():
+    connection, cursor = rc()
+    try:
+        with cursor.execute():
+    try:
+        with conn.cursor() as cursor:
+            sql = "SELECT * FROM your_table WHERE code_col = %s"
+            cursor.execute(sql, (code,))
+            result = cursor.fetchall()
+            df = pd.DataFrame(result)
+    finally:
+        conn.close()
+    return df
 
 #########################################
 ############# 결과값 출력 구역 ##############
