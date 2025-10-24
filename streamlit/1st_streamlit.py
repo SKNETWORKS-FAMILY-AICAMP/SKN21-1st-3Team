@@ -1,11 +1,13 @@
 import streamlit as st
 import pandas as pd
+import pymysql as pms
 from streamlit_folium import st_folium as st_fol
+from streamlit_folium import folium_static
 import folium as fol
-import region_name
+from folium.plugins import MarkerCluster
 from region_name import get_list as getl
-from streamlit_javascript import st_javascript
-# from src.queries.insert_all_data import return_cur
+from src.queries.insert_all_data import return_cur as rc
+from datetime import datetime
 
 #########################################
 ######## 사용자의 검색 조건 선택 구역 #########
@@ -46,10 +48,22 @@ st.markdown("\n")
 st.markdown("\n")
 st.button("검색", on_click=None, disabled=False, use_container_width=True)
 
-# def find_sidogungu_key():
-#     connection, cursor = return_cur()
-#     cursor.execute
-
+#########################################
+############## SQL select ###############
+#########################################
+def find_sidogungu_key():
+    connection, cursor = rc()
+    try:
+        with cursor.execute():
+    try:
+        with conn.cursor() as cursor:
+            sql = "SELECT * FROM your_table WHERE code_col = %s"
+            cursor.execute(sql, (code,))
+            result = cursor.fetchall()
+            df = pd.DataFrame(result)
+    finally:
+        conn.close()
+    return df
 
 #########################################
 ############# 결과값 출력 구역 ##############
