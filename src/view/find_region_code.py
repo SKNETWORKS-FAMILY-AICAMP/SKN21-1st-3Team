@@ -9,13 +9,36 @@ if str(PROJECT_ROOT) not in sys.path:
 from src.database import cursor
 
 
-def find_region_code(region_code: int):
-    query = f"SELECT * FROM charging_station WHERE CTPRVN_CD = {region_code}"
-    result = cursor.execute(query)
-    print(result)
+def find_region_code(region_code: str):
+    try:
+        query = f'SELECT CTPRVN_CD FROM elecar_parking.ctprvn_info WHERE CTPRVN_NM="{region_code}"'
+        cursor.execute(query)
+        result = cursor.fetchone()
+
+        if result == None:
+            raise Exception("there is not this code")
+
+        print(result[0])
+        return result[0]
+    except Exception:
+        print("error", Exception)
 
 
-def find_sido_code(sido_code: int):
-    query = f"SELECT * FROM charging_station WHERE CTPRVN_CD = {sido_code}"
-    result = cursor.execute(query)
-    print(result)
+def find_sigungu_code(sigungu_code: str):
+    try:
+        query = (
+            f'SELECT SGG_CD FROM elecar_parking.sgg_info WHERE SGG_NM="{sigungu_code}"'
+        )
+        cursor.execute(query)
+        result = cursor.fetchone()
+
+        if result == None:
+            raise Exception("there is not this code")
+
+        # Iterate through the results and print them
+        for row in result:
+            print(row)
+        print(result[0])
+        return result[0]
+    except Exception:
+        print("error", Exception)
