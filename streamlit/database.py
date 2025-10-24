@@ -2,7 +2,7 @@ import pymysql as sql
 from dotenv import load_dotenv
 import os
 import pandas as pd
-
+import streamlit as st
 
 # .env 환경 변수 load
 load_dotenv()
@@ -38,6 +38,8 @@ def get_SD_NM():
 def get_SGG_NM():
     pass
 
+
+@st.cache_data(show_spinner="충전소 데이터 조회 중...")
 def get_charging_stations_by_sigungu(dosi, sigungu, selection_time, selection_park):
     """
     선택된 시군구의 코드를 기반으로 충전소 데이터를 조회하고,
@@ -61,7 +63,21 @@ def get_charging_stations_by_sigungu(dosi, sigungu, selection_time, selection_pa
         print(f"SGG_CD 조회 중 DB 오류 발생: {e}")
         return pd.DataFrame()
 
+    SD_code_query = f"SELECT CTPRVN_CD FROM ctprvn_info WHERE CTPRVN_NM = '{dosi}'LIMIT 1"
     
+    try:
+        cursor.execute(SD_code_query)
+        SD_code_result = cursor.fetchone()
+        
+        if not SD_code_result:
+            print(f"CTRVN_CD: '{dosi}'에 해당하는 CTRVN_CD를 찾을 수 없습니다.")
+            return pd.DataFrame() # 코드를 찾지 못하면 빈 DataFrame 반환
+            
+        sd_cd = SD_code_result[0]
+        
+    except Exception as e:
+        print(f"SD_CD 조회 중 DB 오류 발생: {e}")
+        return pd.DataFrame()  
     # 2. 충전소 검색 조건 동적 생성
     
     time_condition = ""
@@ -89,6 +105,7 @@ def get_charging_stations_by_sigungu(dosi, sigungu, selection_time, selection_pa
         charging_station 
     WHERE 
         SGG_CD = '{sgg_cd}' 
+        AND CTPRVN_CD = '{sd_cd}'
         {time_condition} 
         {park_condition}
     GROUP BY 
