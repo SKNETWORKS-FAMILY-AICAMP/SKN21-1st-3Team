@@ -56,12 +56,12 @@ with col3:
     st.subheader('Step 2. 운영정보 선택')
     st.sidebar.markdown("운영 시간")
     options_time = ["24시간 운영", "지정 시간제 운영"]
-    selection_time = st.sidebar.pills("선택 취소 시 버튼 한 번 더 클릭", options_time, selection_mode="single", key="time_pills")
+    selection_time = st.sidebar.pills("선택 취소 시 버튼 한 번 더 클릭", options_time, selection_mode="single", key="time_pills", label_visibility="collapsed")
 # 공영주차장 선택
 with col4:
     st.sidebar.markdown("주차장 형태")
     options_park = ["공영주차장", "민영주차장"]
-    selection_park = st.sidebar.pills("선택 취소 시 버튼 한 번 더 클릭", options_park, selection_mode="single", key="park_pills")
+    selection_park = st.sidebar.pills("선택 취소 시 버튼 한 번 더 클릭", options_park, selection_mode="single", key="park_pills", label_visibility="collapsed")
 st.sidebar.markdown("\n")
 st.sidebar.markdown("\n")
 
