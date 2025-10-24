@@ -13,6 +13,11 @@ TEAM_3 : 공영선, 전우영, 김승룡, 박내은, 진승언
 ### ERD
 ![ERD diagram](src/queries/data/image.png)
 
+### 아키텍쳐
+
+![Arc](src/queries/data/image3.png)
+
+
 
 ### 트러블슈팅
 
