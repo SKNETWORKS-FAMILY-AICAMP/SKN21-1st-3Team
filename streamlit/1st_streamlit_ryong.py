@@ -31,6 +31,7 @@ with col1:
                      '대구광역시', '대전광역시', '부산광역시', '서울특별시', '세종특별자치시',
                      '울산광역시', '인천광역시', '전라남도', '전북특별자치도', '제주특별자치도',
                      '충청남도', '충청북도'])
+
 # 두 번째 선택박스: 시/군/구 선택
 with col2:
     sigungu_list = getl(dosi)
@@ -42,98 +43,68 @@ col3, col4 = st.columns(2)
 # 운영시간 선택
 with col3:
     st.markdown("운영 시간")
-    options = ["24시간 운영", "지정 시간제 운영"]
-    selection = st.pills("선택 취소 시 버튼 한 번 더 클릭", options, selection_mode="single")
+    options1 = ["24시간 운영", "지정 시간제 운영"]
+    selection_optime = st.pills("선택 취소 시 버튼 한 번 더 클릭", options1, selection_mode="single")
+
 # 공영주차장 선택
 with col4:
     st.markdown("주차장 형태")
-    options = ["공영주차장", "민영주차장"]
-    selection = st.pills("선택 취소 시 버튼 한 번 더 클릭", options, selection_mode="single")
+    options2 = ["공영주차장", "민영주차장"]
+    selection_park_type = st.pills("선택 취소 시 버튼 한 번 더 클릭", options2, selection_mode="single")
 st.markdown("\n")
 st.markdown("\n")
-st.button("검색", on_click=None, disabled=False, use_container_width=True)
 
-#########################################
-############## SQL select ###############
-#########################################
-# def find_sidogungu_key():
-#     connection, cursor = rc()
-#     try:
-#         with cursor.execute():
-#     try:
-#         with conn.cursor() as cursor:
-#             sql = "SELECT * FROM your_table WHERE code_col = %s"
-#             cursor.execute(sql, (code,))
-#             result = cursor.fetchall()
-#             df = pd.DataFrame(result)
-#     finally:
-#         conn.close()
-#     return df
+CTPRVN_CD = '11'
+# 첫 가운데 좌표 쿼리
+query_1st_geo = "SELECT min(latitude) '1st_latitude' , min(longitude) '1st_longtitude' FROM charging_station WHERE CTPRVN_CD = '" + CTPRVN_CD + "';"
+# query_1st_geo = "SELECT min(latitude) '1st_latitude' , min(longitude) '1st_longtitude' FROM charging_station WHERE CTPRVN_CD = '11' group by CTPRVN_CD;"
 
-#########################################
-############# 결과값 출력 구역 ##############
-#########################################
-# st.subheader('검색 결과')
-# st.markdown('지도 보기')
-# m = fol.Map(location=[37.58403, 126.96997], zoom_start=20)
-# ## 여러개의 지도 마커
-# locations = [
-#     (37.58403, 126.96997, "신교공영주차장"),
-#     (37.58186, 126.97328, "청와대 사랑채 주차장"),
-#     (37.57456, 126.97405, "적선동 공영주차장")
-# ]
-# for lat, lon, name in locations:
-#     fol.Marker(
-#     [lat,lon],
-#     popup=name,
-#     icon=fol.Icon(icon='📍')
-# ).add_to(m)
-# st_fol(m, width=900, height=700)
+result_df_geo = db.get_data_as_dataframe(query_1st_geo)
+for idx, row in result_df_geo.iterrows():
+    global first_latitude
+    global first_longitude
+    first_latitude = row['1st_latitude']
+    first_longtitude = row['1st_longtitude']
 
-##### 작성자 : 승룡
-
-# 데이터베이스 연결 함수
-# @st.cache_resource 데코레이터를 사용하여 DB 연결을 캐싱합니다.
-# 이렇게 하면 앱을 다시 실행할 때마다 연결이 새로 생성되는 것을 방지합니다.
-
-
-# Streamlit 앱 시작
-st.title('SQLite DB 쿼리 결과 출력 앱')
-
-# 데이터베이스 연결
-# conn = get_db_connection()
-# @st.cache_resource
-# def get_db_connection():
-#     conn=pymysql.connect(
-#         host="192.168.0.37", port=3306, user='project1', password='1111', db='elecar_parking')
-#     return conn
-
-# # 데이터 조회 함수
-# def get_data_as_dataframe(conn, query):
-#     df = pd.read_sql_query(query, conn)
-#     return df
-
-# SQL 쿼리 입력
-query = "SELECT STAT_NM, ADRES, if(is_24h = 1, 'O', 'X') as '24시간여부', latitude, longitude, COUNT(*) as row_count FROM charging_station WHERE ADRES LIKE '서울특별시_금천구%' GROUP BY STAT_NM, ADRES, is_24h, latitude, longitude;" 
-
-
-
-result_df = db.get_data_as_dataframe(query)
-if st.button("검색") :
+if st.button("검색", on_click=None, disabled=False, use_container_width=True) :
 
     # 쿼리 결과 출력
     st.subheader("쿼리 결과")
 
-    st.dataframe(result_df, height=1000)
+    # 버튼 선택별 쿼리 분기
+    # 1. 선택 사항을 아무것도 클릭 안했을 때
+    # selection_optime : 24시간 운영, 지정 시간제 운영
+    # selection_park_type : 공영주차장, 민영주차장
+    if (selection_optime == None) and (selection_park_type == None):
+        # SQL 쿼리 입력
+         query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE CTPRVN_CD = '" + CTPRVN_CD + "' GROUP BY STAT_NM, ADRES, is_24h, latitude, longitude;"
+    elif (selection_optime == '24시간 운영') and (selection_park_type == '공영주차장'):
+        print("24시간 운영!!")
+    elif (selection_optime == '24시간 운영') and (selection_park_type == '민영주차장'):
+        print("지정 시간제 운영!!")
+    elif (selection_optime == '지정 시간제 운영') and (selection_park_type == '공영주차장'):
+        print("지정 시간제 운영!!")
+    elif (selection_optime == '지정 시간제 운영') and (selection_park_type == '민영주차장'):
+        print("지정 시간제 운영!!")
+    # SQL 쿼리 입력
+    # query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE CTPRVN_CD = '" + CTPRVN_CD + "' GROUP BY STAT_NM, ADRES, is_24h, latitude, longitude;" 
+    result_df = db.get_data_as_dataframe(query)  
 
-    result_df[["lat","lon"]] = result_df[["latitude","longitude"]]
+    # '위도', '경도' 열 삭제 후, 테이블로 보여주기.
+    df = pd.DataFrame(result_df)
+    df_new = df.drop(['위도', '경도'], axis=1)
+    st.dataframe(df_new, height=500)
+    
+    # 2.  
+    result_df[["lat","lon"]] = result_df[["위도","경도"]]
 
-    m = folium.Map(location=[37.4562557, 126.7052062], zoom_start=13)
+    # 처음 위치의 위도, 경도 설정
+    m = folium.Map(location=[first_latitude, first_longtitude], zoom_start=13)
 
     marker_cluster = MarkerCluster().add_to(m)
 
     for idx, row in result_df.iterrows():
-        popup_text = f"<b>{row['STAT_NM']}</b><br>{row['ADRES']}"
+        popup_text = f"<b>{row['주차장명']}</b><br>{row['주소']}<br>24시간여부 : {row['24시간여부']}<br>충전기 갯수 : {row['충전기수']}"
         folium.Marker(
             location=[row["lat"], row["lon"]],
             popup=folium.Popup(popup_text, max_width=200)
