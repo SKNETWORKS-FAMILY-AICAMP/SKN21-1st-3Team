@@ -1,6 +1,7 @@
 import pymysql as sql
 from dotenv import load_dotenv
 import os
+import pandas as pd
 
 
 # .env 환경 변수 load
@@ -13,6 +14,10 @@ db_password = os.environ.get("DB_PASSWORD") or ""
 db_name = os.environ.get("DB_NAME")
 db_port = int(os.environ.get("DB_PORT") or 0)
 
+
+print(db_host)
+print("sdsffasasdas")
+print("asdasdsadas")
 # sql 서버 연동 모듈
 
 connection = sql.connect(
@@ -38,6 +43,16 @@ def get_SD_NM():
 def get_SGG_NM():
     pass
 
+# @st.cache_resource
+# def get_db_connection():
+#     conn=pymysql.connect(
+#         host="192.168.0.37", port=3306, user='project1', password='1111', db='elecar_parking')
+#     return conn
+
+# 데이터 조회 함수
+def get_data_as_dataframe(conn, query):
+    df = pd.read_sql_query(query, conn)
+    return df
     
 if __name__ == "__main__":
     print(get_SD_NM())
