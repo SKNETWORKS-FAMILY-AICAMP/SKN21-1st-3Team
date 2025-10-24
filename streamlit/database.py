@@ -50,8 +50,8 @@ def get_SGG_NM():
 #     return conn
 
 # 데이터 조회 함수
-def get_data_as_dataframe(conn, query):
-    df = pd.read_sql_query(query, conn)
+def get_data_as_dataframe(query):
+    df = pd.read_sql_query(query, connection)
     return df
     
 if __name__ == "__main__":

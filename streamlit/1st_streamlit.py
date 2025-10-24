@@ -8,7 +8,7 @@ import folium
 from folium.plugins import MarkerCluster
 from region_name import get_list as getl
 from datetime import datetime
-from database import *
+import database as db
 
 #########################################
 ######## 사용자의 검색 조건 선택 구역 #########
@@ -17,6 +17,10 @@ from database import *
 st.title('전기차 충전소 찾기')
 st.subheader('검색 조건')
 st.markdown('지역')
+
+sido_list = db.get_SD_NM()
+
+print(sido_list)
 
 ### 지역 선택
 col1, col2 = st.columns(2)
@@ -112,7 +116,9 @@ st.title('SQLite DB 쿼리 결과 출력 앱')
 # SQL 쿼리 입력
 query = "SELECT STAT_NM, ADRES, if(is_24h = 1, 'O', 'X') as '24시간여부', latitude, longitude, COUNT(*) as row_count FROM charging_station WHERE ADRES LIKE '서울특별시_금천구%' GROUP BY STAT_NM, ADRES, is_24h, latitude, longitude;" 
 
-result_df = get_data_as_dataframe(connection, query)
+
+
+result_df = db.get_data_as_dataframe(query)
 
 # 쿼리 결과 출력
 st.subheader("쿼리 결과")
