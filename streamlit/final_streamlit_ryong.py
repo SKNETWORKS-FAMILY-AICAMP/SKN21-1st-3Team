@@ -17,7 +17,7 @@ def search_result():
 
     ##### 작성자 : 승룡
     # 첫 가운데 좌표 쿼리
-    query_1st_geo = "SELECT min(latitude) '1st_latitude' , min(longitude) '1st_longtitude' FROM charging_station WHERE ADRES LIKE ('" + dosi + "_" + sigungu + "%');"
+    query_1st_geo = "SELECT avg(latitude) '1st_latitude' , avg(longitude) '1st_longtitude' FROM charging_station WHERE ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY CTPRVN_CD;"
     result_df_geo = db.get_data_as_dataframe(query_1st_geo)
     for idx, row in result_df_geo.iterrows():
         global first_latitude
@@ -25,73 +25,64 @@ def search_result():
         first_latitude = row['1st_latitude']
         first_longtitude = row['1st_longtitude']
 
-        # 쿼리 결과 출력
-        st.subheader("쿼리 결과")
+    # 쿼리 결과 출력
+    st.subheader("쿼리 결과")
 
-        # 버튼 선택별 쿼리 분기
-        # selection_optime : 24시간 운영, 지정 시간제 운영. is_24h : 1, 0
-        # selection_park_type : 공영주차장, 민영주차장. is_public : 1, 0
-        # 1. 선택 사항을 아무것도 클릭 안했을 때
-        if (selection_time == None) and (selection_type == None):
-            print("11111")
-            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
-        # 2. 공영주차장만 클릭했을 때.(is_public이 1일 때). is_public = 1
-        elif (selection_time == None) and (selection_type == '공영주차장'):
-            print("2222")
-            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
-        # 3. 민영주차장만 클릭했을 때.(is_public이 0일 때). is_public = 0
-        elif (selection_time == None) and (selection_type == '민영주차장'):
-            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
-            print("3333")
-        # 4. 24시간 운영만 눌렀을 때.   is_24h = 1
-        elif (selection_time == '24시간 운영') and (selection_type == None):
-            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_24h = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
-            print("4444")
-        # 5. 24시간 운영이고 공영주차장일 때. is_public = 1 and is_24h = 1
-        elif (selection_time == '24시간 운영') and (selection_type == '공영주차장'):
-            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 1 and is_24h = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
-            print("5555")
-        #6. 24시간 운영이고 민영주차장일 때 is_public = 0 and is_24h = 1
-        elif (selection_time == '24시간 운영') and (selection_type == '민영주차장'):
-            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 0 and is_24h = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
-            print("6666")
-        #7. 24시간 운영이 아닐 때   is_24h = 0
-        elif (selection_time == '지정 시간제 운영') and (selection_type == None):
-            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_24h = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
-            print("7777")
-        #8. 24시간 운영이 아니고, 공영주차장 일 때. is_public = 1 and is_24h = 0
-        elif (selection_time == '지정 시간제 운영') and (selection_type == '공영주차장'):
-            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 1 and is_24h = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
-            print("8888")
-        #9. 24시간 운영이 아니고, 공영주차장아 아닐 때. is_public = 0 and is_24h = 0
-        elif (selection_time == '지정 시간제 운영') and (selection_type == '민영주차장'):
-            query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 0 and is_24h = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
-            print("9999")
-        # SQL 쿼리 입력
-        # query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE CTPRVN_CD = '" + CTPRVN_CD + "' GROUP BY STAT_NM, ADRES, is_24h, latitude, longitude;" 
-        result_df = db.get_data_as_dataframe(query)  
+    # 버튼 선택별 쿼리 분기
+    # selection_optime : 24시간 운영, 지정 시간제 운영. is_24h : 1, 0
+    # selection_park_type : 공영주차장, 민영주차장. is_public : 1, 0
+    # 1. 선택 사항을 아무것도 클릭 안했을 때
+    if (selection_time == None) and (selection_type == None):
+        query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+    # 2. 공영주차장만 클릭했을 때.(is_public이 1일 때). is_public = 1
+    elif (selection_time == None) and (selection_type == '공영주차장'):
+        query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+    # 3. 민영주차장만 클릭했을 때.(is_public이 0일 때). is_public = 0
+    elif (selection_time == None) and (selection_type == '민영주차장'):
+        query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+    # 4. 24시간 운영만 눌렀을 때.   is_24h = 1
+    elif (selection_time == '24시간 운영') and (selection_type == None):
+        query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_24h = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+    # 5. 24시간 운영이고 공영주차장일 때. is_public = 1 and is_24h = 1
+    elif (selection_time == '24시간 운영') and (selection_type == '공영주차장'):
+        query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 1 and is_24h = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+    #6. 24시간 운영이고 민영주차장일 때 is_public = 0 and is_24h = 1
+    elif (selection_time == '24시간 운영') and (selection_type == '민영주차장'):
+        query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 0 and is_24h = 1 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+    #7. 24시간 운영이 아닐 때   is_24h = 0
+    elif (selection_time == '지정 시간제 운영') and (selection_type == None):
+        query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_24h = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+    #8. 24시간 운영이 아니고, 공영주차장 일 때. is_public = 1 and is_24h = 0
+    elif (selection_time == '지정 시간제 운영') and (selection_type == '공영주차장'):
+        query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 1 and is_24h = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+    #9. 24시간 운영이 아니고, 공영주차장아 아닐 때. is_public = 0 and is_24h = 0
+    elif (selection_time == '지정 시간제 운영') and (selection_type == '민영주차장'):
+        query = "SELECT STAT_NM '주차장명', ADRES '주소', if(is_24h = 1, 'O', 'X') as '24시간여부', if(is_public = 1, 'O', 'X') as '공영주차장여부', latitude '위도', longitude '경도', COUNT(*) '충전기수' FROM charging_station WHERE is_public = 0 and is_24h = 0 and ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY STAT_NM, ADRES, is_24h, is_public, latitude, longitude;"
+    
+    # 쿼리 결과 데이터 프레임에 담기.
+    result_df = db.get_data_as_dataframe(query)  
 
-        # '위도', '경도' 열 삭제 후, 테이블로 보여주기.
-        df = pd.DataFrame(result_df)
-        df_new = df.drop(['위도', '경도'], axis=1)
-        st.dataframe(df_new, height=500)
-        
-        # 2.  
-        result_df[["lat","lon"]] = result_df[["위도","경도"]]
+    # '위도', '경도' 열 삭제 후, 테이블로 보여주기.
+    df = pd.DataFrame(result_df)
+    df_new = df.drop(['위도', '경도'], axis=1)
+    st.dataframe(df_new, height=500)
+    
+    # 위도, 경도 컬럼에 있는 값을 folium의 lat, lon 컬럼에 넣기.
+    result_df[["lat","lon"]] = result_df[["위도","경도"]]
 
-        # 처음 위치의 위도, 경도 설정
-        m = folium.Map(location=[first_latitude, first_longtitude], zoom_start=13)
+    # 처음 위치의 위도, 경도 설정
+    m = folium.Map(location=[first_latitude, first_longtitude], zoom_start=13)
 
-        marker_cluster = MarkerCluster().add_to(m)
+    marker_cluster = MarkerCluster().add_to(m)
 
-        for idx, row in result_df.iterrows():
-            popup_text = f"<b>{row['주차장명']}</b><br>{row['주소']}<br>24시간여부 : {row['24시간여부']}<br>충전기 갯수 : {row['충전기수']}"
-            folium.Marker(
-                location=[row["lat"], row["lon"]],
-                popup=folium.Popup(popup_text, max_width=200)
-            ).add_to(marker_cluster)
+    for idx, row in result_df.iterrows():
+        popup_text = f"<b>{row['주차장명']}</b><br>{row['주소']}<br>24시간여부 : {row['24시간여부']}<br>충전기 갯수 : {row['충전기수']}"
+        folium.Marker(
+            location=[row["lat"], row["lon"]],
+            popup=folium.Popup(popup_text, max_width=200)
+        ).add_to(marker_cluster)
 
-        folium_static(m)
+    folium_static(m)
     
 
 #########################################
