@@ -10,6 +10,7 @@ from region_name import get_list as getl
 from datetime import datetime
 import database as db
 
+# 쿼리 결과 출력
 def search_result():
     #########################################
     ############# 결과값 출력 구역 ##############
@@ -19,13 +20,10 @@ def search_result():
     # 첫 가운데 좌표 쿼리
     query_1st_geo = "SELECT avg(latitude) '1st_latitude' , avg(longitude) '1st_longtitude' FROM charging_station WHERE ADRES LIKE ('" + dosi + "_" + sigungu + "%') GROUP BY CTPRVN_CD;"
     result_df_geo = db.get_data_as_dataframe(query_1st_geo)
-    for idx, row in result_df_geo.iterrows():
-        global first_latitude
-        global first_longitude
-        first_latitude = row['1st_latitude']
-        first_longtitude = row['1st_longtitude']
+    first_latitude = result_df_geo.iloc[0][0]
+    first_longtitude = result_df_geo.iloc[0][1]
 
-    # 쿼리 결과 출력
+    # 제목
     st.subheader("쿼리 결과")
 
     # 버튼 선택별 쿼리 분기
