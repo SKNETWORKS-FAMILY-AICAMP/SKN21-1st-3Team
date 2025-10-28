@@ -65,7 +65,7 @@ def search_result():
     df_new = df.drop(['위도', '경도'], axis=1)
     st.dataframe(df_new, height=500)
     
-    # 위도, 경도 컬럼에 있는 값을 folium의 lat, lon 컬럼에 넣기.
+    # 위도, 경도 컬럼에 있는 값을 folium의 lat, lon 컬럼을 추가하여 복사.
     result_df[["lat","lon"]] = result_df[["위도","경도"]]
 
     # 처음 위치의 위도, 경도 설정
