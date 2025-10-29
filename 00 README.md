@@ -9,7 +9,8 @@
 |  김승룡  |  팀원  |  데이터 시각화(pandas, folium 기반)  |
 |  박내은  |  팀원  |  MySQL 활용 Data 호출 및 적재, Streamlit 구현  |
 |  전우영  |  팀원  |  Streamlit 구현  |
-<br>
+  
+</br>
 
 ### 2. 주요 기능
 - 전기차 충전소 조회
@@ -19,24 +20,28 @@
   - 공영/민영 여부 필터링
 - 충전소 정보 지도 및 상세 리스트 조회
 - 초기 및 검색 후 지도 위치 자동 조정
-<br>
+
+</br>
 
 ### 3. ERD
-![ERD diagram](src/queries/data/image.png)
-<br>
+![ERD diagram](queries/data/image.png)
+
+</br>
 
 ### 4. 아키텍쳐
-![Arc](src/queries/data/3Team_Arc_final.png)
-<br>
+![Arc](queries/data/3Team_Arc_final.png)
+
+</br>
 
 ### 5. 트러블슈팅
-![Data ex](src/queries/data/image2.png)
+![Data ex](queries/data/image2.png)
 
 |  문제 &nbsp;&nbsp;  |  사용자가 시간을 입력하면 그 시간에 사용이 가능한 전기차 충전소를 보여주려고 했으나, 공공데이터의 시간 데이터가 다음과 같이 제공됨  |
 |  :-  |  :-  |
 |  해결과정 &nbsp;&nbsp;&nbsp;  |  데이터에 자연어가 많이 섞여있어 온전히 시간만을 추출하고자 시도 → 16만개의 데이터 값을 일정 패턴으로 추출해내기에 시간적 여유가 부족해 기능을 축소하는 방향으로 계획 변경  |
 |  결과 &nbsp;&nbsp;&nbsp;  |  간단하게 24시간, 휴무 없이 매일 이용 가능한지 여부만 표시  |
-<br>
+
+</br>
 
 ### 개발 방식
 - 공부/학습 목적에 중점을 두어 파트를 나누기 보다 모든 팀원이 전 과정을 수행하는 방식으로 진행
@@ -44,7 +49,8 @@
 2. pymysql 기반 Query 문을 이용해 공유 DB로부터 데이터 호출
 3. pandas, folium 모듈을 이용해 데이터 시각화
 4. Streamlit과 기타 Python 모듈을 통한 페이지 구현
-<br>
+
+</br>
 
 ### 회고
 |  팀원  |  소감  |

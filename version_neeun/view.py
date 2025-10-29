@@ -1,3 +1,7 @@
+"""
+데이터 시각화 페이지 구성
+"""
+
 import streamlit as st
 from region_name import regions
 from streamlit_folium import folium_static
