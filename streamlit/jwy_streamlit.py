@@ -31,27 +31,28 @@ with st.sidebar:
 sido_list = db.get_SD_NM()
     
 ### 지역 선택
-# 첫 번째 선택박스: 도/광역시 선택
-dosi = st.selectbox("도/시를 선택하세요. [가나다순]", sorted(sido_list))
+with st.sidebar:
+    # 첫 번째 선택박스: 도/광역시 선택
+    dosi = st.selectbox("도/시를 선택하세요. [가나다순]", sorted(sido_list))
 
-# 두 번째 선택박스: 시/군/구 선택
-sigungu_list = getl(dosi)
-sigungu = st.selectbox("시/군/구 또는 읍/면/동을 선택하세요. [가나다순]", sigungu_list)
-st.divider()
+    # 두 번째 선택박스: 시/군/구 선택
+    sigungu_list = getl(dosi)
+    sigungu = st.selectbox("시/군/구 또는 읍/면/동을 선택하세요. [가나다순]", sigungu_list)
+    st.divider()
 
-## 시간 및 공영주차장 선택
-# 운영시간 선택
-st.subheader("STEP 2. 운영 정보 선택")
-st.markdown("###### 선택 취소를 원하시면 버튼을 한 번 더 클릭하세요.")
-st.markdown("**운영시간**")
-options = ["24시간 운영", "지정 시간제 운영"]
-selection_time = st.pills(" ", options, selection_mode="single", label_visibility="collapsed")
-# 공영주차장 선택
-st.markdown("**주차장 형태**")
-options = ["공영주차장", "민영주차장"]
-selection_park = st.pills(" ", options, selection_mode="single", label_visibility="collapsed")
-st.markdown("\n")
-st.markdown("\n")
+    ## 시간 및 공영주차장 선택
+    # 운영시간 선택
+    st.subheader("STEP 2. 운영 정보 선택")
+    st.markdown("###### 선택 취소를 원하시면 버튼을 한 번 더 클릭하세요.")
+    st.markdown("**운영시간**")
+    options = ["24시간 운영", "지정 시간제 운영"]
+    selection_time = st.pills(" ", options, selection_mode="single", label_visibility="collapsed")
+    # 공영주차장 선택
+    st.markdown("**주차장 형태**")
+    options = ["공영주차장", "민영주차장"]
+    selection_park = st.pills(" ", options, selection_mode="single", label_visibility="collapsed")
+    st.markdown("\n")
+    st.markdown("\n")
 
 
 
