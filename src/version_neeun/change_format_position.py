@@ -4,7 +4,7 @@ DB에 저장된 x,y 좌표값을 위도/경도 형태로 변경 후 DB update
 
 import pyproj
 import json
-from database import cursor
+from db_connection import cursor
 
 transformer = pyproj.Transformer.from_crs(
     "EPSG:3857",  # Pseudo-Mercator (X, Y 순서)
