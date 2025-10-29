@@ -6,8 +6,6 @@ from find_region_code import find_region_code, find_sigungu_code
 from get_station_list import get_station_table_list, get_station_map_list
 import pandas as pd
 
-# import find_region_code
-#
 
 st.set_page_config(layout="wide")
 
@@ -33,7 +31,6 @@ st.markdown(
 with st.sidebar:
     st.title("⚡️ 전기차 충전소 찾기")
     st.subheader("STEP 1 | 지역 선택")
-    # 첫 번째 선택박스: 도/광역시 선택
     dosi = st.selectbox(
         "도/시를 선택하세요",
         regions,
@@ -43,7 +40,6 @@ with st.sidebar:
 
     st.divider()
 
-    # 24시간 선택 구역
     st.subheader("STEP 2 | 운영 정보 선택")
     st.caption(
         "<p class='caption'>선택 취소 시 버튼 한 번 더 클릭</p>", unsafe_allow_html=True
@@ -56,7 +52,6 @@ with st.sidebar:
     )
     is_24hr = options.index(selection_time) if selection_time else None
 
-    # 공영주차장 선택 구역
     is_public = None
     st.markdown("")
     options = ["민영주차장", "공영주차장"]
@@ -71,9 +66,7 @@ with st.sidebar:
 ########## 지도 데이터 구역 ##########
 region_code = find_region_code(dosi)
 sigungu_code = find_sigungu_code(sigungu)
-positions = (
-    get_station_map_list(region_code or 0, sigungu_code or 0, is_24hr, is_public) or []
-)
+positions = get_station_map_list(region_code, sigungu_code, is_24hr, is_public)
 
 map = folium.Map(location=[37.5652, 126.9774], zoom_start=13)
 map_cluster = plugins.MarkerCluster()

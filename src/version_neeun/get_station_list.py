@@ -1,20 +1,15 @@
-# src/queries -> src 프로젝트 root 변경
-import sys
-from pathlib import Path
-
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
-from src.database import cursor
+from db_connection import cursor
 
 
 def get_station_list(
-    region_code: int,
-    sigungu_code: int,
-    is_24hr,
-    is_public,
+    region_code: str,
+    sigungu_code: str,
+    is_24hr: int | None,
+    is_public: int | None,
 ):
+    """
+    전기차 목록 조회
+    """
     try:
         query = f"""
             SELECT * 
@@ -32,13 +27,15 @@ def get_station_list(
 
         return rows
     except Exception:
-        print(Exception)
+        print("query error", Exception.__str__)
+        return []
 
 
 def get_station_table_list(region_code, sigungu_code, is_24hr, is_public):
+    """
+    충전소 목록 테이블용 뷰를 위한 데이터 가공
+    """
     rows = get_station_list(region_code, sigungu_code, is_24hr, is_public)
-    if rows == None:
-        return []
 
     result = {
         "ID": [],
@@ -57,19 +54,14 @@ def get_station_table_list(region_code, sigungu_code, is_24hr, is_public):
 
 
 def get_station_map_list(
-    region_code: int,
-    sigungu_code: int,
-    is_24hr,
-    is_public,
+    region_code: str,
+    sigungu_code: str,
+    is_24hr: int | None,
+    is_public: int | None,
 ):
-    try:
-        rows = get_station_list(region_code, sigungu_code, is_24hr, is_public)
-
-        if rows == None:
-            return []
-
-        result = [[row[-4], row[-3], row[1]] for row in rows]
-
-        return result
-    except Exception:
-        print(Exception)
+    """
+    충전소 목록 지도용 뷰를 위한 데이터 가공
+    """
+    rows = get_station_list(region_code, sigungu_code, is_24hr, is_public)
+    result = [[row[-4], row[-3], row[1]] for row in rows]
+    return result
