@@ -29,7 +29,7 @@
 </br>
 
 ### 4. 아키텍쳐
-![Arc](queries/data/3Team_Arc_final.png)
+![Arc](queries/data/1st_3Team_Arc.png)
 
 </br>
 
