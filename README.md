@@ -26,7 +26,7 @@
 <br>
 
 ### 4. 아키텍쳐
-![Arc](src/queries/data/SKN21_1st_3Team_Arc.png)
+![Arc](src/queries/data/3Team_Arc_final.png)
 <br>
 
 ### 5. 트러블슈팅
